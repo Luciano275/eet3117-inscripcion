@@ -1,0 +1,37 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Sector {
+  Privado
+  Estatal
+}
+
+enum Ambito {
+  Urbano
+  Rural_Aglomerado
+  Rural_Disperso
+}
+
+model Padron {
+  id String @id @default(uuid())
+  departamento String
+  municipio String?
+  codigoJurisdiccional String
+  cueAnexo Int
+  nombreEstablecimiento String
+  ambito Ambito
+  sector Sector
+  ofertas String
+  localidad String
+  domicilio String
+
+  @@unique([id])
+}
