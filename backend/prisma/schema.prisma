@@ -90,6 +90,12 @@ model Estudiante {
   cursoId String?
 
   curso Curso? @relation(fields: [cursoId], references: [id])
+
+  estudianteFotoDniUrl String
+  tutorFotoDniUrl String
+  partidaNacimientoUrl String
+  constanciaUrl String
+  fichaMedicaUrl String?  
   
   @@unique([id, dni])
 }
