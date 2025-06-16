@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -20,18 +19,53 @@ enum Ambito {
   Rural_Disperso
 }
 
+enum Genero {
+  Masculino
+  Femenino
+  Otro
+}
+
+enum Turno {
+  Tarde
+  Mañana
+}
+
 model Padron {
-  id String @id @default(uuid())
-  departamento String
-  municipio String?
-  codigoJurisdiccional String
-  cueAnexo Int
+  id                    String  @id @default(uuid())
+  departamento          String
+  municipio             String?
+  codigoJurisdiccional  String
+  cueAnexo              Int
   nombreEstablecimiento String
-  ambito Ambito
-  sector Sector
-  ofertas String
-  localidad String
-  domicilio String
+  ambito                Ambito
+  sector                Sector
+  ofertas               String
+  localidad             String
+  domicilio             String
 
   @@unique([id])
+}
+
+// Modelo para estudiantes ingresantes
+model PreInscripcion {
+  id                 String   @id @default(uuid())
+  nombreCompleto     String
+  dni                BigInt
+  fechaNacimiento    DateTime
+  edad               Int
+  nacionalidad       String
+  genero             Genero
+  direccion          String
+  telefonoEstudiante String?
+  correoEstudiante   String
+  escuelaProcedencia String
+  egreso             Int
+  repitente          Boolean  @default(false)
+
+  nombreTutor   String
+  dniTutor      BigInt
+  telefonoTutor String
+  correoTutor   String?
+
+  turno Turno
 }
