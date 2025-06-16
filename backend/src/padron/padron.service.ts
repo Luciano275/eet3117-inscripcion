@@ -15,7 +15,7 @@ export class PadronService {
   ) {}
 
   async run() {
-    const data = JSON.parse(readFileSync(join(process.cwd(), 'src/seed/padron_educativo.json'), 'utf-8'))
+    const data = JSON.parse(readFileSync(join(process.cwd(), 'src/padron/padron_educativo.json'), 'utf-8'))
 
     const chunkSize = 100;
 

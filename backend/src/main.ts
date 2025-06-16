@@ -16,6 +16,12 @@ async function bootstrap() {
     transform: true,
   }))
 
+  app.enableCors({
+    origin: config.get<string>('cors.origin'),
+    methods: ['GET', 'POST'],
+    credentials: true
+  })
+
   await app.listen(
     config.get<number>('app.port')!
   );

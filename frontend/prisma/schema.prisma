@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Curso {
+  id           String       @id @unique
+  curso        Int
+  division     Int
+  ciclo        Ciclo
+  especialidad Especialidad
+  Estudiante   Estudiante[]
+}
+
+model Estudiante {
+  id                   String   @id
+  nombreCompleto       String
+  dni                  BigInt
+  fechaNacimiento      DateTime
+  edad                 Int
+  genero               Genero
+  direccion            String
+  telefonoEstudiante   String?
+  correoEstudiante     String
+  escuelaProcedencia   String
+  egreso               Int
+  repitente            Boolean  @default(false)
+  nombreTutor          String
+  dniTutor             BigInt
+  telefonoTutor        String
+  correoTutor          String?
+  turno                Turno
+  cursoId              String?
+  estudianteFotoDniUrl String
+  tutorFotoDniUrl      String
+  partidaNacimientoUrl String
+  constanciaUrl        String
+  fichaMedicaUrl       String?
+  Curso                Curso?   @relation(fields: [cursoId], references: [id])
+
+  @@unique([id, dni])
+}
+
+model Padron {
+  id                    String  @id @unique
+  departamento          String
+  municipio             String?
+  codigoJurisdiccional  String
+  cueAnexo              Int
+  nombreEstablecimiento String
+  ambito                Ambito
+  sector                Sector
+  ofertas               String
+  localidad             String
+  domicilio             String
+}
+
+enum Ambito {
+  Urbano
+  Rural_Aglomerado
+  Rural_Disperso
+}
+
+enum Ciclo {
+  Basico
+  Superior
+}
+
+enum Especialidad {
+  Informatica
+  Electronica
+}
+
+enum Genero {
+  Masculino
+  Femenino
+  Otro
+}
+
+enum Sector {
+  Privado
+  Estatal
+}
+
+enum Turno {
+  Tarde
+  Ma_ana @map("Mañana")
+}

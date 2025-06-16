@@ -72,7 +72,6 @@ model Estudiante {
   dni                BigInt
   fechaNacimiento    DateTime
   edad               Int
-  nacionalidad       String
   genero             Genero
   direccion          String
   telefonoEstudiante String?

@@ -1,1 +1,1 @@
-POST http://localhost:5000/api/v1/seed
+POST http://localhost:5000/api/v1/padron

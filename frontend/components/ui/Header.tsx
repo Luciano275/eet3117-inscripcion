@@ -15,7 +15,7 @@ export default function Header () {
       />
       <div className="flex flex-col gap-2">
         <h1 className="text-4xl font-bold text-center">Escuela de Educación Técnica N° 3117</h1>
-        <h2 className="font-light text-2xl text-center">Daniel Óscar Reyes</h2>
+        <h2 className="font-medium text-2xl text-center">Daniel Óscar Reyes</h2>
       </div>
     </header>
   )
