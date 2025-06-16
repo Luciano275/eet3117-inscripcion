@@ -30,6 +30,16 @@ enum Turno {
   Mañana
 }
 
+enum Especialidad {
+  Informatica
+  Electronica
+}
+
+enum Ciclo {
+  Basico
+  Superior
+}
+
 model Padron {
   id                    String  @id @default(uuid())
   departamento          String
@@ -46,8 +56,17 @@ model Padron {
   @@unique([id])
 }
 
-// Modelo para estudiantes ingresantes
-model PreInscripcion {
+model Curso {
+  id                String   @id @default(uuid()) @unique
+  curso Int
+  division Int
+  ciclo Ciclo
+  especialidad Especialidad
+
+  estudiantes Estudiante[]
+}
+
+model Estudiante {
   id                 String   @id @default(uuid())
   nombreCompleto     String
   dni                BigInt
@@ -67,5 +86,10 @@ model PreInscripcion {
   telefonoTutor String
   correoTutor   String?
 
-  turno Turno
+  turno         Turno
+  cursoId String?
+
+  curso Curso? @relation(fields: [cursoId], references: [id])
+  
+  @@unique([id, dni])
 }
