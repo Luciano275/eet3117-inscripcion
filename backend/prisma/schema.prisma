@@ -57,10 +57,10 @@ model Padron {
 }
 
 model Curso {
-  id                String   @id @default(uuid()) @unique
-  curso Int
-  division Int
-  ciclo Ciclo
+  id           String       @id @unique @default(uuid())
+  curso        Int
+  division     Int
+  ciclo        Ciclo
   especialidad Especialidad
 
   estudiantes Estudiante[]
@@ -85,16 +85,16 @@ model Estudiante {
   telefonoTutor String
   correoTutor   String?
 
-  turno         Turno
+  turno   Turno?
   cursoId String?
 
   curso Curso? @relation(fields: [cursoId], references: [id])
 
   estudianteFotoDniUrl String
-  tutorFotoDniUrl String
+  tutorFotoDniUrl      String
   partidaNacimientoUrl String
-  constanciaUrl String
-  fichaMedicaUrl String?  
-  
+  constanciaUrl        String
+  fichaMedicaUrl       String?
+
   @@unique([id, dni])
 }

@@ -30,7 +30,7 @@ export default function SearchSchool(
     replace(`${pathname}?${params.toString()}`, {
       scroll: false
     });
-  }, 500)
+  }, 300)
 
   return (
     <Input

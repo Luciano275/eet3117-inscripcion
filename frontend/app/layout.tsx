@@ -1,8 +1,11 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
+import BelongProvider from "@/components/providers/belong-provider";
+
+import { Geist, Geist_Mono } from "next/font/google";
+import type { Metadata } from "next";
+import LocalizationMUIProvider from "@/components/providers/localization-mui-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,16 +28,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col gap-8`}
-      >
-        <Header />
-        <main className="grow px-4">
-          {children}
-        </main>
-        <Footer />
-      </body>
-    </html>
+    <LocalizationMUIProvider>
+      <BelongProvider>
+        <html lang="es">
+          <body
+            className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col gap-8`}
+          >
+            <Header />
+            <main className="grow px-4">
+              {children}
+            </main>
+            <Footer />
+          </body>
+        </html>
+      </BelongProvider>
+    </LocalizationMUIProvider>
   );
 }

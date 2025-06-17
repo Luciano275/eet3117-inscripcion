@@ -34,7 +34,7 @@ model Estudiante {
   dniTutor             BigInt
   telefonoTutor        String
   correoTutor          String?
-  turno                Turno
+  turno                Turno?
   cursoId              String?
   estudianteFotoDniUrl String
   tutorFotoDniUrl      String
